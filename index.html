@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Student e-Portfolio — Mealify, a campus food-delivery app built for SDG 2: Zero Hunger." />
+<title>Amira Fariza — e-Portfolio | Mealify</title>
+<style>
+  /* ===================== THEME (SDG 2 · Zero Hunger) ===================== */
+  :root{
+    --green-900:#0f3d1c;
+    --green-700:#1b5e20;
+    --green-600:#2e7d32;
+    --green-500:#43a047;
+    --leaf:#66bb6a;
+    --wheat:#d9a441;     /* warm gold accent — nod to SDG 2 */
+    --wheat-soft:#f3e6c8;
+    --bg:#f7faf4;
+    --surface:#ffffff;
+    --ink:#16291b;
+    --muted:#5d7062;
+    --line:#e1ebdc;
+    --shadow:0 14px 34px -18px rgba(15,61,28,.35);
+    --radius:18px;
+    --max:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  body{
+    margin:0;
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--green-700);}
+  img{max-width:100%;display:block;}
+
+  .wrap{width:min(var(--max),92vw);margin-inline:auto;}
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;font-weight:700;
+    color:var(--green-600);margin:0 0 .5rem;
+  }
+
+  /* ===================== NAV ===================== */
+  header.site{
+    position:sticky;top:0;z-index:100;
+    background:rgba(247,250,244,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:64px;}
+  .brand{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.18rem;color:var(--green-900);text-decoration:none;}
+  .brand .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,var(--green-600),var(--leaf));display:grid;place-items:center;font-size:1.1rem;}
+  nav ul{list-style:none;display:flex;gap:1.5rem;margin:0;padding:0;}
+  nav a{
+    text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem;
+    padding:.35rem 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
+  }
+  nav a:hover,nav a:focus-visible{color:var(--green-600);border-color:var(--green-500);}
+  .menu-btn{display:none;background:none;border:1.5px solid var(--line);border-radius:10px;width:42px;height:42px;cursor:pointer;align-items:center;justify-content:center;}
+  .menu-btn span,.menu-btn span::before,.menu-btn span::after{content:"";display:block;width:20px;height:2px;background:var(--ink);position:relative;transition:.2s;}
+  .menu-btn span::before{position:absolute;top:-6px;}
+  .menu-btn span::after{position:absolute;top:6px;}
+
+  @media (max-width:820px){
+    .menu-btn{display:inline-flex;}
+    nav{position:absolute;left:0;right:0;top:64px;background:var(--surface);border-bottom:1px solid var(--line);
+         max-height:0;overflow:hidden;transition:max-height .28s ease;}
+    nav.open{max-height:340px;}
+    nav ul{flex-direction:column;gap:0;padding:.5rem 4vw;}
+    nav li{border-bottom:1px solid var(--line);}
+    nav a{display:block;padding:.85rem 0;border:0;}
+  }
+
+  /* ===================== SECTIONS ===================== */
+  section{padding:72px 0;scroll-margin-top:78px;}
+  section:nth-of-type(even){background:var(--surface);}
+  .sec-title{font-size:clamp(1.6rem,3.4vw,2.3rem);margin:.2rem 0 .4rem;color:var(--green-900);letter-spacing:-.01em;}
+  .sec-intro{color:var(--muted);max-width:46rem;margin:0 0 2.2rem;}
+
+  /* ===================== HERO ===================== */
+  .hero{
+    padding:84px 0 76px;
+    background:
+      radial-gradient(1100px 420px at 85% -10%,rgba(102,187,106,.22),transparent 60%),
+      linear-gradient(180deg,#eef6e9,var(--bg));
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:42px;align-items:center;}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.08;margin:.4rem 0 0;color:var(--green-900);letter-spacing:-.02em;}
+  .hero h1 span{color:var(--green-600);}
+  .hero .lede{font-size:1.1rem;color:var(--muted);max-width:34rem;margin:1rem 0 0;}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem;}
+  .chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;font-size:.86rem;font-weight:600;color:var(--green-700);box-shadow:var(--shadow);}
+  .sdg-card{
+    background:linear-gradient(155deg,var(--green-700),var(--green-500));
+    color:#fff;border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .sdg-card::after{content:"🌾";position:absolute;right:-6px;bottom:-14px;font-size:6rem;opacity:.18;}
+  .sdg-card .num{display:inline-flex;align-items:center;gap:.5rem;background:var(--wheat);color:#3a2a05;font-weight:800;border-radius:10px;padding:.35rem .7rem;font-size:.85rem;}
+  .sdg-card h2{margin:.8rem 0 .4rem;font-size:1.4rem;}
+  .sdg-card p{margin:0;color:rgba(255,255,255,.9);font-size:.96rem;}
+
+  .info-table{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem 2rem;margin-top:2.4rem;}
+  .info-table div{border-left:3px solid var(--leaf);padding-left:.9rem;}
+  .info-table dt{font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:0;}
+  .info-table dd{margin:.15rem 0 0;font-weight:600;}
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;}
+    .info-table{grid-template-columns:1fr;}
+  }
+
+  /* ===================== CARDS ===================== */
+  .grid{display:grid;gap:26px;}
+  .grid.two{grid-template-columns:repeat(2,1fr);}
+  @media (max-width:760px){.grid.two{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+    transition:transform .2s ease;
+  }
+  section:nth-of-type(even) .card{background:var(--bg);}
+  .card:hover{transform:translateY(-4px);}
+  .card-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:.7rem;flex:1;}
+  .card .tag{align-self:flex-start;background:var(--wheat-soft);color:#6b4e10;font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:.28rem .7rem;}
+  .card h3{margin:.1rem 0 0;font-size:1.25rem;color:var(--green-900);}
+  .card p{margin:0;color:var(--muted);}
+  .reflection{
+    background:rgba(67,160,71,.07);border-left:3px solid var(--green-500);
+    border-radius:0 10px 10px 0;padding:.7rem .9rem;font-size:.95rem;color:var(--ink);
+  }
+  .reflection strong{color:var(--green-700);}
+
+  /* screenshots: 2 images per card */
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 12px 0;}
+  .shots figure{margin:0;}
+  .shots img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#eef3ea;display:block;}
+  .shots figcaption{font-size:.72rem;color:var(--muted);text-align:center;margin-top:5px;}
+
+  /* responsive 16:9 video */
+  .video{position:relative;width:100%;aspect-ratio:16/9;background:#0c1f12;margin-top:12px;}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;margin-top:.3rem;
+    background:var(--green-700);color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;
+    padding:.6rem 1.1rem;border-radius:10px;transition:background .15s,transform .15s;
+  }
+  .btn:hover{background:var(--green-600);transform:translateY(-2px);}
+  .btn svg{width:18px;height:18px;fill:currentColor;}
+
+  .problem{background:var(--wheat-soft);border-radius:10px;padding:.7rem .9rem;font-size:.95rem;color:#5a4410;}
+  .problem strong{color:#6b4e10;}
+
+  .badges{display:flex;flex-wrap:wrap;gap:.45rem;}
+  .badges span{background:var(--green-700);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:.3rem .7rem;}
+
+  /* ===================== SKILLS ===================== */
+  .skills{display:flex;flex-wrap:wrap;gap:.7rem;}
+  .skills span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;font-weight:600;font-size:.92rem;box-shadow:var(--shadow);}
+  section:nth-of-type(even) .skills span{background:var(--bg);}
+
+  /* ===================== RESOURCES ===================== */
+  .res-list{list-style:none;padding:0;margin:0;display:grid;gap:.7rem;max-width:48rem;}
+  .res-list li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;}
+  section:nth-of-type(even) .res-list li{background:var(--bg);}
+  .res-list li b{color:var(--green-700);}
+  .ack{margin-top:1.4rem;background:rgba(67,160,71,.07);border-left:3px solid var(--green-500);border-radius:0 10px 10px 0;padding:1rem 1.1rem;max-width:48rem;color:var(--muted);font-size:.94rem;}
+
+  /* ===================== FOOTER ===================== */
+  footer.site{background:var(--green-900);color:#dcefe0;padding:42px 0;text-align:center;}
+  footer.site .brand{color:#fff;justify-content:center;margin-bottom:.6rem;}
+  footer.site p{margin:.2rem 0;font-size:.92rem;color:#aed7b6;}
+  footer.site a{color:#cdeccf;}
+
+  :focus-visible{outline:3px solid var(--wheat);outline-offset:2px;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="site">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home"><span class="logo" aria-hidden="true">🍴</span>Mealify e-Portfolio</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+      <span></span>
+    </button>
+    <nav id="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#labs">Labs</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#reflection">Reflection</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#resources">Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ===================== HOME ===================== -->
+<section id="home" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Mobile Application Development · e-Portfolio</p>
+      <h1>Hi, I'm Amira&nbsp;Fariza — I build apps that make <span>good food easier to reach.</span></h1>
+      <p class="lede">This portfolio documents my journey building <strong>Mealify</strong>, a campus food-delivery app, across five hands-on labs and two full projects. It shows how I moved from static screens to a working, data-driven Android app — and what I learned at each step.</p>
+      <div class="hero-meta">
+        <span class="chip">Kotlin</span>
+        <span class="chip">Jetpack Compose</span>
+        <span class="chip">Room</span>
+        <span class="chip">Firebase</span>
+      </div>
+
+      <dl class="info-table">
+        <div><dt>Name</dt><dd>Amira Fariza</dd></div>
+        <div><dt>Matric No.</dt><dd>A216295</dd></div>
+        <div><dt>Programme</dt><dd>Bachelor of Information Technology</dd></div>
+        <div><dt>Instructor</dt><dd>[INSTRUCTOR NAME]</dd></div>
+      </dl>
+    </div>
+
+    <aside class="sdg-card" aria-label="Sustainable Development Goal alignment">
+      <span class="num">🎯 SDG 2 · Zero Hunger</span>
+      <h2>Food, closer to everyone</h2>
+      <p>Mealify aligns with <strong>SDG&nbsp;2: Zero Hunger</strong>, because it makes affordable, nearby meals easier to find and helps local kitchens cut waste by selling surplus stock at a discount.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== LABS ===================== -->
+<section id="labs">
+  <div class="wrap">
+    <p class="eyebrow">Hands-on practice</p>
+    <h2 class="sec-title">Labs</h2>
+    <p class="sec-intro">Five labs, each adding a new layer to the Mealify app — from the first layout to a working local database. Each lab shows two screenshots, a video walkthrough, and a short reflection.</p>
+
+    <div class="grid two">
+
+      <!-- Lab 1 -->
+      <article class="card">
+        <div class="shots">
+          <figure><img src="images/lab1image.jpg" alt="Lab 1 UI screenshot 1 — Mealify home screen layout" /><figcaption>Home layout</figcaption></figure>
+          <figure><img src="images/lab1imagee.jpg" alt="Lab 1 UI screenshot 2 — Mealify category and store cards" /><figcaption>Category &amp; cards</figcaption></figure>
+        </div>
+        <div class="video">
+          <!-- Replace VIDEO_ID_LAB1 with your YouTube video ID -->
+          <iframe src="https://youtu.be/K_ZLqwoBWxY?si=z1K9zQOFv9ZoRB95" title="Lab 1 — UI walkthrough video" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-body">
+          <span class="tag">Lab 1 · UI</span>
+          <h3>Building the Home Screen</h3>
+          <p>Laid out Mealify's home screen in Jetpack Compose: the category row, banner carousel, and store cards.</p>
+          <div class="reflection"><strong>Reflection:</strong> Getting the spacing and card elevation to feel balanced was harder than expected. It taught me how much a clean visual hierarchy depends on consistent padding and a restrained type scale, and that small layout decisions add up to the overall feel.</div>
+        </div>
+      </article>
+
+      <!-- Lab 2 -->
+      <article class="card">
+        <div class="shots">
+          <figure><img src="images/lab2image.jpg" alt="Lab 2 Interaction screenshot 1 — quantity stepper" /><figcaption>Quantity stepper</figcaption></figure>
+          <figure><img src="images/lab2imagee.jpg" alt="Lab 2 Interaction screenshot 2 — add to cart feedback" /><figcaption>Add to cart</figcaption></figure>
+        </div>
+        <div class="video">
+          <!-- Replace VIDEO_ID_LAB2 with your YouTube video ID -->
+          <iframe src="https://youtu.be/GBF7YRdjefo?si=AyFyrw8PpLcODHZ2" title="Lab 2 — Interaction walkthrough video" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-body">
+          <span class="tag">Lab 2 · Interaction</span>
+          <h3>Add to Cart &amp; Quantity Stepper</h3>
+          <p>Wired up the behaviour behind the UI: the quantity stepper, the Add to Cart button, and tap feedback on each dish.</p>
+          <div class="reflection"><strong>Reflection:</strong> Connecting state to controls showed me how Compose recomposition keeps the screen in sync. I learned to hoist state into one place so the UI stays predictable, instead of scattering it across components.</div>
+        </div>
+      </article>
+
+      <!-- Lab 3 -->
+      <article class="card">
+        <div class="shots">
+          <figure><img src="images/lab3image.jpg" alt="Lab 3 Material Design screenshot 1 — magenta theme" /><figcaption>Magenta theme</figcaption></figure>
+          <figure><img src="images/lab3imagee.jpg" alt="Lab 3 Material Design screenshot 2 — green theme" /><figcaption>Green theme</figcaption></figure>
+        </div>
+        <div class="video">
+          <!-- Replace VIDEO_ID_LAB3 with your YouTube video ID -->
+          <iframe src="https://youtu.be/HCDaFLcPB_M?si=1v3tAFOuD_VekGjV" title="Lab 3 — Material Design walkthrough video" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-body">
+          <span class="tag">Lab 3 · Material Design</span>
+          <h3>Theming with Material 3</h3>
+          <p>Defined Mealify's colour, typography, and shape tokens, including a magenta primary and a fresh-green alternate theme.</p>
+          <div class="reflection"><strong>Reflection:</strong> Being able to change the whole app's look by editing a single theme file made design tokens finally click for me. I now see colour and type as a system to maintain, not decoration to sprinkle on each screen.</div>
+        </div>
+      </article>
+
+      <!-- Lab 4 -->
+      <article class="card">
+        <div class="shots">
+          <figure><img src="images/lab4image.jpg" alt="Lab 4 Navigation screenshot 1 — bottom navigation bar" /><figcaption>Bottom nav bar</figcaption></figure>
+          <figure><img src="images/lab4imagee.jpg" alt="Lab 4 Navigation screenshot 2 — dish detail screen" /><figcaption>Detail screen</figcaption></figure>
+        </div>
+        <div class="video">
+          <!-- Replace VIDEO_ID_LAB4 with your YouTube video ID -->
+          <iframe src="https://youtu.be/EXg05rhhv6Y?si=4g-It2HIdTQ4XqYL" title="Lab 4 — Navigation walkthrough video" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-body">
+          <span class="tag">Lab 4 · Navigation</span>
+          <h3>Bottom Nav &amp; Detail Screens</h3>
+          <p>Connected screens with Navigation Compose and a bottom bar for Home, Cart, Orders, and Account, passing the selected dish into the detail screen.</p>
+          <div class="reflection"><strong>Reflection:</strong> Handling the back stack and passing arguments was the trickiest part of the course so far. Working through it gave me a real feel for navigation graphs and why a clear screen structure matters.</div>
+        </div>
+      </article>
+
+      <!-- Lab 5 -->
+      <article class="card">
+        <div class="shots">
+          <figure><img src="images/lab5image.jpg" alt="Lab 5 Room screenshot 1 — cart saved locally" /><figcaption>Saved cart</figcaption></figure>
+          <figure><img src="images/lab5imagee.jpg" alt="Lab 5 Room screenshot 2 — order history" /><figcaption>Order history</figcaption></figure>
+        </div>
+        <div class="video">
+          <!-- Replace VIDEO_ID_LAB5 with your YouTube video ID -->
+          <iframe src="https://youtu.be/NSC5CQEkoTU?si=gNjMMrA-Kz0_R5jr" title="Lab 5 — Room database walkthrough video" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-body">
+          <span class="tag">Lab 5 · Room</span>
+          <h3>Saving the Cart &amp; Order History</h3>
+          <p>Added a Room database to persist the cart and the order history that powers Mealify's "My Activity History" screen.</p>
+          <div class="reflection"><strong>Reflection:</strong> Modelling entities and DAOs and observing data with Flow showed me how local storage keeps an app usable offline. Seeing my orders survive an app restart was the moment the project felt like a real product.</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow">Putting it together</p>
+    <h2 class="sec-title">Projects</h2>
+    <p class="sec-intro">Two end-to-end builds: the core Mealify ordering app, and a cloud-connected, sensor-aware extension. Each follows the required template — problem statement, video submission report (VSR), GitHub repo, and lessons learned.</p>
+
+    <div class="grid two">
+
+      <!-- Project 1 -->
+      article class="card">
+        <div class="shots">
+          <figure><img src="images/project1image.jpg" alt="Project 2 Mealify Live screenshot 1 — live store data screen" /><figcaption>Screen 1 · Live data</figcaption></figure>
+          <figure><img src="images/project1imagee.jpg" alt="Project 2 Mealify Live screenshot 2 — location-aware delivery screen" /><figcaption>Screen 2 · Location</figcaption></figure>
+        </div>
+
+        <div class="video">
+          <!-- Replace VIDEO_ID_PROJECT1 with your YouTube VSR video ID -->
+          <iframe src=" https://youtu.be/F-88hXKOw5o?si=HhNNzRK6L5bGdZuK" title="Project 1 — Mealify video submission report (VSR)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-body">
+          <span class="tag">Project 1 · Lab 4 + Working Features</span>
+          <h3>Mealify</h3>
+          <div class="problem"><strong>Problem statement:</strong> Students around Bangi struggle to find affordable meals from nearby kitchens in one place, and small cafes lack an easy channel to sell surplus stock. Mealify brings local stores, deals, and ordering into a single app.</div>
+          <div class="reflection"><strong>Lessons learned:</strong> Building the full order flow taught me to think in features, not just screens. I learned to keep navigation, state, and cart logic decoupled so each could be tested on its own — and that a tidy data model early on saves a lot of refactoring later.</div>
+          <a class="btn" href="https://github.com/amirafarizasuhairi/Mealify" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.32c-2.23.49-2.7-1.08-2.7-1.08-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="card">
+        <div class="shots">
+          <figure><img src="images/project2image.jpg" alt="Project 2 Mealify Live screenshot 1 — live store data screen" /><figcaption>Screen 1 · Live data</figcaption></figure>
+          <figure><img src="images/project2imagee.jpg" alt="Project 2 Mealify Live screenshot 2 — location-aware delivery screen" /><figcaption>Screen 2 · Location</figcaption></figure>
+        </div>
+        <div class="video">
+          <!-- Replace VIDEO_ID_PROJECT2 with your YouTube VSR video ID -->
+          <iframe src="https://youtu.be/GfpjPx_RoB4?si=xmLKNascNUGIAM6a" title="Project 2 — Mealify Live video submission report (VSR)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-body">
+          <span class="tag">Project 2 · Lab 5 + 2 Screens + API + Sensors + Cloud</span>
+          <h3>Mealify Live</h3>
+          <div class="badges">
+            <span>Room</span><span>REST API</span><span>Location Sensor</span><span>Firebase Cloud</span>
+          </div>
+          <div class="problem"><strong>Problem statement:</strong> Mealify needed live store data, location-aware delivery, and orders that follow the user across devices. Mealify Live adds a cloud backend and sensors so the experience stays current and personal.</div>
+          <div class="reflection"><strong>Lessons learned:</strong> Integrating Retrofit (API), the device location sensor, and Firebase (cloud) showed me how a mobile app stitches together many services. I learned to handle network and permission failures gracefully, and that good loading and empty states matter as much as the happy path.</div>
+          <a class="btn" href="https://github.com/amirafarizasuhairi/Mealify" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.32c-2.23.49-2.7-1.08-2.7-1.08-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REFLECTION ===================== -->
+<section id="reflection">
+  <div class="wrap">
+    <p class="eyebrow">Looking back</p>
+    <h2 class="sec-title">Reflection &amp; Learning Journey</h2>
+    <p class="sec-intro" style="max-width:52rem;">
+      I started this course able to sketch a screen but unsure how to make one actually work. Building Mealify lab by lab changed that: I learned to turn a layout into interactive state, connect screens with navigation, and finally persist real data with Room and the cloud. The hardest moments — debugging the navigation back stack and handling failed network calls — ended up teaching me the most, because they forced me to understand what the framework was doing rather than copying snippets. I'm leaving with a working app I'm proud of and the confidence to plan, build, and ship a mobile feature from scratch.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow">What I can use</p>
+    <h2 class="sec-title">Skills &amp; Tech Stack</h2>
+    <p class="sec-intro">Tools and technologies I worked with across the labs and projects.</p>
+    <div class="skills">
+      <span>Kotlin</span>
+      <span>Jetpack Compose</span>
+      <span>Material 3</span>
+      <span>Navigation Compose</span>
+      <span>Room</span>
+      <span>Retrofit</span>
+      <span>Firebase Firestore</span>
+      <span>Coroutines &amp; Flow</span>
+      <span>REST APIs</span>
+      <span>Coil (image loading)</span>
+      <span>Git &amp; GitHub</span>
+      <span>Figma</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESOURCES ===================== -->
+<section id="resources">
+  <div class="wrap">
+    <p class="eyebrow">Credits &amp; references</p>
+    <h2 class="sec-title">Resources</h2>
+    <p class="sec-intro">APIs, libraries, and references that made these builds possible.</p>
+    <ul class="res-list">
+      <li><b>Android Jetpack</b> — Compose, Navigation, Room, ViewModel &amp; Lifecycle.</li>
+      <li><b>Retrofit + OkHttp</b> — REST networking for live store and menu data.</li>
+      <li><b>Firebase</b> — Firestore for cloud sync and Authentication for sign-in.</li>
+      <li><b>Google Places API</b> — nearby store and location data for delivery.</li>
+      <li><b>Coil</b> — efficient image loading in Compose.</li>
+      <li><b>Material Design 3</b> — official guidelines for theming and components.</li>
+      <li><b>Coroutines &amp; Flow</b> — asynchronous data and reactive UI updates.</li>
+    </ul>
+    <p class="ack">
+      <b>Acknowledgement of AI assistance:</b> Parts of this portfolio's layout and some debugging were supported by an AI assistant (Anthropic's Claude). All application code, design decisions, reflections, and content are my own work, written and verified by me.
+    </p>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site">
+  <div class="wrap">
+    <div class="brand"><span class="logo" aria-hidden="true">🍴</span>Mealify e-Portfolio</div>
+    <p><strong>Amira Fariza</strong> · Matric No. A216295</p>
+    <p>Bachelor of Information Technology · Mobile Application Development</p>
+    <p>&copy; 2026 Amira Fariza. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle (progressive enhancement — links still work without JS)
+  (function () {
+    var btn = document.getElementById('menuBtn');
+    var nav = document.getElementById('primary-nav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
